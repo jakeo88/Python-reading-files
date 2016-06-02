@@ -1,0 +1,41 @@
+data=[['GTIN','PRODUCT','QUANTITY','PRICE']]
+receipt= " "
+catalogue=[]
+array = []
+    
+import csv
+while True:#Loops the code 
+    
+    
+    f=open("database.csv")#opens the csv file
+    for line in f:
+        catalogue.append(line)
+    f.close()#closes the file
+
+    Call_items=len(catalogue)
+    print("enter The gtin code of the utem you would like to purchase")
+    title=input(">>")
+    
+    for i in range(Call_items):
+        line=catalogue[i]
+        item=line.split(",")
+        if item[0]==title:
+            product=(item[2])
+            price=float(item[1])
+            GTcode=(item[0])
+            print("Found:" , product)
+            quantity = int(input("How many of this item do you want"))
+            final_price=(quantity*price)
+            quantity=str(quantity)
+            final_price=str(final_price)
+            GTcode=str(GTcode)
+            receipt +=" " + GTcode + "   " + product + "   " + quantity + "    " + final_price+"\n"    
+            
+            
+            another_one = input("Would you like to add another item to your order y/n")
+            if another_one == "n":
+                print(data)
+                print (receipt)
+                break
+            if another_one == "y":
+                continue
